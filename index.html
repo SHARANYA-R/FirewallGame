@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firewall Placement Game - N-Queens Security Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1><i class="fas fa-shield-alt"></i> Firewall Placement Game</h1>
+            <p class="subtitle">Secure your network using N-Queens strategy</p>
+        </header>
+
+        <div class="game-controls">
+            <div class="control-panel">
+                <div class="difficulty-selector">
+                    <label for="boardSize">Network Size:</label>
+                    <select id="boardSize">
+                        <option value="4">4x4 (Beginner)</option>
+                        <option value="6">6x6 (Intermediate)</option>
+                        <option value="8" selected>8x8 (Advanced)</option>
+                        <option value="10">10x10 (Expert)</option>
+                    </select>
+                </div>
+                
+                <div class="game-actions">
+                    <button id="newGameBtn" class="btn btn-primary">
+                        <i class="fas fa-play"></i> New Game
+                    </button>
+                    <button id="hintBtn" class="btn btn-secondary">
+                        <i class="fas fa-lightbulb"></i> Hint
+                    </button>
+                    <button id="solveBtn" class="btn btn-warning">
+                        <i class="fas fa-magic"></i> Auto Solve
+                    </button>
+                    <button id="resetBtn" class="btn btn-danger">
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="score-panel">
+                <div class="score-item">
+                    <span class="score-label">Firewalls Placed:</span>
+                    <span id="firewallCount" class="score-value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Coverage:</span>
+                    <span id="coverage" class="score-value">0%</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Security Score:</span>
+                    <span id="securityScore" class="score-value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Status:</span>
+                    <span id="gameStatus" class="score-value status-pending">Planning</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-board-container">
+            <div class="network-legend">
+                <h3>Network Legend</h3>
+                <div class="legend-item">
+                    <div class="legend-icon firewall-icon"></div>
+                    <span>Firewall</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #FF6B6B; opacity: 0.8;"></div>
+                    <span>Region 1</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #4ECDC4; opacity: 0.8;"></div>
+                    <span>Region 2</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon" style="background: #45B7D1; opacity: 0.8;"></div>
+                    <span>Region 3</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon protected-zone"></div>
+                    <span>Protected Zone</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon vulnerable-zone"></div>
+                    <span>Vulnerable Zone</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-icon conflict-zone"></div>
+                    <span>Firewall Conflict</span>
+                </div>
+            </div>
+
+            <div class="game-board" id="gameBoard">
+                <!-- Game board will be generated dynamically -->
+            </div>
+
+            <div class="game-info">
+                <h3>Game Rules</h3>
+                <ul>
+                    <li>Each colored region must have exactly one firewall</li>
+                    <li>Firewalls cannot be on the same row, column, or diagonal</li>
+                    <li>Place one firewall per region for optimal security</li>
+                    <li>Use visual cues to identify region coverage</li>
+                </ul>
+                
+                <div class="challenge-info">
+                    <h4>Security Challenge</h4>
+                    <p>Your goal is to place <span id="targetFirewalls">8</span> firewalls on the network grid such that each colored region has exactly one firewall and no two firewalls can attack each other following chess queen rules.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-display" id="messageDisplay">
+            <div class="message-content">
+                <i class="fas fa-info-circle"></i>
+                <span id="messageText">Welcome! Click on network nodes to place firewalls.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
